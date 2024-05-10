@@ -1,0 +1,3 @@
+[submodule "chatting_app"]
+	path = chatting_app
+	url = https://github.com/waizumerkamboh/chatting_app.git
