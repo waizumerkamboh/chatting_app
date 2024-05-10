@@ -8,6 +8,7 @@ import 'package:we_chat/pages/UserProfile/update_profile_page.dart';
 
 import '../pages/auth/auth.dart';
 import '../pages/chats_screen/chat_screen.dart';
+import '../pages/contact_pages/contact_page.dart';
 import '../pages/home_page/home_pages.dart';
 
 
@@ -22,9 +23,14 @@ var pagePath = [
       page: () =>  HomePage(),
       transition: Transition.rightToLeft
   ),
+  // GetPage(
+  //     name: "/chatScreen",
+  //     page: () =>  ChatScreen(userModel: 'null',),
+  //     transition: Transition.rightToLeft
+  // ),
   GetPage(
-      name: "/chatScreen",
-      page: () => const ChatScreen(),
+      name: "/contactPage",
+      page: () =>  ContactPage(),
       transition: Transition.rightToLeft
   ),
   // GetPage(

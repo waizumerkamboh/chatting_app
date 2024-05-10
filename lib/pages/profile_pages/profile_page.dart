@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:we_chat/controller/auth_controller/auth_controller.dart';
 import 'package:we_chat/controller/profile_controller/profile_controller.dart';
 import 'package:we_chat/widget/primary_button.dart';
 
@@ -12,6 +14,7 @@ class ProfilePageScreen extends StatelessWidget {
    ProfilePageScreen({super.key});
   ProfileController profileController = Get.put(ProfileController());
    ImagePickerController imagePickerController = Get.put(ImagePickerController());
+   AuthController authController = Get.put(AuthController());
 
 
    @override
@@ -25,6 +28,15 @@ class ProfilePageScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
+        actions: [
+          IconButton(
+              onPressed: (){
+                authController.logoutUser();
+
+              },
+              icon: const Icon(Icons.logout)
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -80,10 +92,15 @@ class ProfilePageScreen extends StatelessWidget {
                                       ? const Icon(Icons.image)
                                       : ClipRRect(
                                       borderRadius: BorderRadius.circular(100),
-                                      child: Image.network(profileController.currentUser.value.profileImage!,
-                                        fit: BoxFit.cover,
+                                      child: CachedNetworkImage(
+                                          imageUrl:  profileController.currentUser.value.profileImage!,
+                                          fit: BoxFit.cover,
+                                        placeholder: (context, url) => const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) => const Icon(Icons.error),
                                       )
+
                                   ),
+
 
                                 )
                             )

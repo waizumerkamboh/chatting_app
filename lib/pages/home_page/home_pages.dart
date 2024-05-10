@@ -60,15 +60,17 @@ class HomePage extends StatelessWidget {
           ]),
         ),
         floatingActionButton: FloatingActionButton(
-            onPressed: (){},
+            onPressed: (){
+              Get.toNamed("/contactPage");
+            },
           child: const Icon(Icons.message_outlined),
           
             ),
-        body:  const TabBarView(
+        body:   TabBarView(
             children: [
               ChatList(),
-              Text('Groups'),
-              Text('Calls'),
+              const Text('Groups'),
+              const Text('Calls'),
             ]),
       ),
     );

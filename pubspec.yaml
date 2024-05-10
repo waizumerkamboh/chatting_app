@@ -43,6 +43,9 @@ dependencies:
   cloud_firestore: ^4.17.2 # FOR CLOUD FIRESTORE
   image_picker: ^1.1.1 # IMAGE PICKER FROM  GALLERY AND CAMERA
   firebase_storage: ^11.7.5 # FIREBASE STORAGE FOR IMAGE, DOCUMENT, AUDIO AND VIDEO ETC.
+  uuid: ^4.4.0 # FOR UNIQUE ID
+  intl: ^0.19.0 # FOR DATE AND TIME FORMAT
+  cached_network_image: ^3.3.1 # FOR CACHED NETWORK IMAGE
 
 dev_dependencies:
   flutter_test:

@@ -58,7 +58,7 @@ class ChatModel {
     if (json['replies'] != null) {
       _replies = [];
       json['replies'].forEach((v) {
-        _replies?.add(Dynamic.fromJson(v));
+        _replies?.add(v);
       });
     }
   }

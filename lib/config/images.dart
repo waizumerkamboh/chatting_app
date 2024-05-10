@@ -5,6 +5,7 @@ class ImageAssets{
   // PNG IMAGES ONLY
   static const boyPic = "$imagesPath/boy_pic.png";
   static const girlPic = "$imagesPath/girl_pic.png";
+  static const defaultProfileUrl = "https://firebasestorage.googleapis.com/v0/b/we-chat-f715e.appspot.com/o/boy_pic.png?alt=media&token=b8626999-c2f1-4e86-b557-ced9e678a8dc";
 
   // SVG ICONS ONLY
   static const appIconSvg = "$iconsPath/app_icon.svg";

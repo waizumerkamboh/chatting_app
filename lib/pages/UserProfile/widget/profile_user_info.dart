@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,11 @@ import 'package:we_chat/controller/profile_controller/profile_controller.dart';
 import '../../../config/images.dart';
 
 class LoginUserInfo extends StatelessWidget {
-   LoginUserInfo({super.key});
+  final String profileImage;
+  final String userName;
+  final String userEmail;
+
+   LoginUserInfo({super.key, required this.profileImage, required this.userName, required this.userEmail});
   ProfileController profileController = Get.put(ProfileController());
 
   @override
@@ -25,14 +30,28 @@ class LoginUserInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(ImageAssets.boyPic)
+                    Container(
+                        width: 150,
+                        height: 150,
+                        child: ClipRRect(
+                             borderRadius: BorderRadius.circular(100),
+                            child: CachedNetworkImage(
+                              imageUrl:  profileImage,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                            ),
+
+
+                        ))
                   ],
                 ),
                 const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(profileController.currentUser.value.name!,
+                    Text(
+                      userName,
                       style: Theme.of(context).textTheme.bodyLarge,
                     )
                   ],
@@ -40,7 +59,8 @@ class LoginUserInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(profileController.currentUser.value.email!,
+                    Text(
+                      userEmail,
                       style: Theme.of(context).textTheme.labelLarge,
                     )                          ],
                 ),
