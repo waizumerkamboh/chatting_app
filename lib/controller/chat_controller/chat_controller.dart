@@ -12,7 +12,10 @@ class ChatController extends GetxController {
   final auth = FirebaseAuth.instance;
   final db = FirebaseFirestore.instance;
   RxBool isLoading = false.obs;
-  var uuid = Uuid();
+  var uuid = const Uuid();
+  // For Pick Image In Chat Page
+  RxString selectedImagePath = "".obs;
+
   ProfileController profileController = Get.put(ProfileController());
 
   String getRoomId(String targetUserId) {
@@ -102,5 +105,11 @@ class ChatController extends GetxController {
         .map(
             (doc) => ChatModel.fromJson(doc.data()),
     ).toList());
+  }
+  // Online, Offline Status Function
+  Stream<UserModel> getStatus(String uid){
+    return db.collection("users").doc(uid).snapshots().map((event) {
+      return UserModel.fromJson(event.data()!);
+    });
   }
 }

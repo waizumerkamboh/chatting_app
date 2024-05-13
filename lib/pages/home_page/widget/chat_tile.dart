@@ -23,6 +23,8 @@ class ChatTile extends StatelessWidget {
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: CachedNetworkImage(
+            width: 50,
+            height: 50,
             imageUrl:  imageUrl,
             fit: BoxFit.cover,
             placeholder: (context, url) => const CircularProgressIndicator(),
@@ -31,7 +33,9 @@ class ChatTile extends StatelessWidget {
         ),
         title: Text(name,
           style: Theme.of(context).textTheme.bodyLarge,),
-        subtitle: Text(lastChat,
+        subtitle: Text(
+          lastChat,
+          maxLines: 1,
           style: Theme.of(context).textTheme.labelMedium,),
         trailing:  Text(lastTime,
           style: Theme.of(context).textTheme.labelMedium,

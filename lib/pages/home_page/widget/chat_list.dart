@@ -17,42 +17,38 @@ class ChatList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-        child: Column(
-          children: [
-            const SizedBox(height: 10,),
-            Expanded(
-              child: Obx(() => ListView(
-              
-              children: contactController.chatRoomList.map((e) => InkWell(
-                onTap: (){
-                  Get.to(ChatScreen(
-                      userModel: (e.receiver!.id ==
-                          profileController.currentUser.value.id
-                          ?e.sender
-                          :e.receiver
-                      )!
-                  ));
-              
-                },
-                child:  ChatTile(
-                  imageUrl: (e.receiver!.id ==
-                      profileController.currentUser.value.id
-                      ?e.sender!.profileImage
-                      :e.receiver!.profileImage
-                  ) ?? ImageAssets.defaultProfileUrl,
-                  name: (e.receiver!.id ==
-                      profileController.currentUser.value.id
-                      ?e.sender!.name
-                      :e.receiver!.name
-                  )?? "Users",
-                  lastChat: e.lastMessage?? "Last Message",
-                  lastTime: e.lastMessageTimeStamp?? "Last Time",
-                ),
-              ),).toList()
-                  )),
-            ),
-          ],
-        ),
+        child: Obx(() => ListView(
+
+            children: contactController.chatRoomList.map((e) => InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: (){
+                Get.to(ChatScreen(
+                    userModel: (e.receiver!.id ==
+                        profileController.currentUser.value.id
+                        ?e.sender
+                        :e.receiver
+                    )!
+                ));
+
+              },
+              child:  ChatTile(
+                imageUrl: (e.receiver!.id ==
+                    profileController.currentUser.value.id
+                    ?e.sender!.profileImage
+                    :e.receiver!.profileImage
+                ) ?? ImageAssets.defaultProfileUrl,
+                name: (e.receiver!.id ==
+                    profileController.currentUser.value.id
+                    ?e.sender!.name
+                    :e.receiver!.name
+                )?? "Users",
+                lastChat: e.lastMessage?? "Last Message",
+                lastTime: e.lastMessageTimeStamp?? "Last Time",
+              ),
+            ),).toList()
+                )),
+
         onRefresh: (){
           return contactController.getChatRoomList();
         }

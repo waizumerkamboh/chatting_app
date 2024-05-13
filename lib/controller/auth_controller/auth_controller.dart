@@ -49,6 +49,7 @@ class AuthController extends GetxController{
       initUser(email, name);
       print('Account created');
       Get.offAllNamed('/homePage');
+      Get.snackbar('Signup', 'Account created');
 
 
     }on FirebaseAuthException catch(e){
@@ -57,8 +58,12 @@ class AuthController extends GetxController{
       } else if (e.code == 'email-already-in-use') {
         print('The account already exists for that email.');
       }
+      Get.snackbar('Signup', e.toString());
+
     } catch (e) {
       print(e);
+      Get.snackbar('Signup', e.toString());
+
     }
     isLoading.value = false;
 
